@@ -3,11 +3,13 @@
 W ramach pierwszego zadania proszę wykonać grę kółko i krzyżyk w
 Bashu, który:
 
-3.0 - działa w trybie gry turowej,
+✅ 3.0 - działa w trybie gry turowej,
 
-4.0 - pozwala na zapis i odtwarzanie przerwanej gry (save game),
+✅ 4.0 - pozwala na zapis i odtwarzanie przerwanej gry (save game),
 
-5.0 - pozwala na grę z komputerem.
+✅ 5.0 - pozwala na grę z komputerem.
+
+preview video:
 
 ### Zamek w Minecraft
 
