@@ -9,7 +9,8 @@ Bashu, który:
 
 ✅ 5.0 - pozwala na grę z komputerem.
 
-preview video:
+code: [folder](https://github.com/homosum1/skrypty/tree/main/task_01)
+
 
 ### Zamek w Minecraft
 
