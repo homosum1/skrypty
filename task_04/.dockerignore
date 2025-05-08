@@ -1,0 +1,5 @@
+*.rock
+*.rockspec
+*.md
+*.log
+tmp/

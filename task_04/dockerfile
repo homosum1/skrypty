@@ -1,0 +1,18 @@
+FROM openresty/openresty:alpine
+
+RUN apk add --no-cache \
+  lua5.1 lua5.1-dev luarocks5.1 \
+  gcc g++ make git curl bash unzip \
+  libffi-dev openssl-dev
+
+RUN ln -s /usr/bin/luarocks-5.1 /usr/local/bin/luarocks
+
+RUN luarocks install lapis && \
+    luarocks install moonscript
+
+WORKDIR /app
+COPY . /app
+
+RUN if [ -f lapis.rockspec ]; then luarocks make; fi
+
+CMD ["lapis", "server", "development"]
