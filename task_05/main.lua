@@ -11,6 +11,11 @@ boardHeight = 20
 notification = nil
 notificationTimer = 0
 
+isClearing = false
+clearTimer = 0
+linesToClear = {}
+
+
 figureColors = {
     {1, 0, 0},
     {1, 1, 0},
@@ -119,7 +124,11 @@ function drawBoard()
         for x = 1, boardWidth do
             local color = board[y][x]
             if color ~= 0 then
-                love.graphics.setColor(color)
+                if isClearing and contains(linesToClear, y) then
+                    love.graphics.setColor(1, 1, 1)
+                else
+                    love.graphics.setColor(color)
+                end
                 love.graphics.rectangle("fill", (x - 1) * singleBlockSize, (y - 1) * singleBlockSize, singleBlockSize, singleBlockSize)
             end
         end
@@ -127,12 +136,10 @@ function drawBoard()
 end
 
 function clearFullLines()
-    local linesCleared = 0
-    local y = boardHeight
+    linesToClear = {}
 
-    while y >= 1 do
+    for y = boardHeight, 1, -1 do
         local full = true
-
         for x = 1, boardWidth do
             if board[y][x] == 0 then
                 full = false
@@ -141,24 +148,15 @@ function clearFullLines()
         end
 
         if full then
-            table.remove(board, y)
-
-            local newRow = {}
-            
-            for i = 1, boardWidth do
-                newRow[i] = 0
-            end
-
-            table.insert(board, 1, newRow)
-            linesCleared = linesCleared + 1
-            love.audio.play(clearSound)
-
-        else
-            y = y - 1
+            table.insert(linesToClear, y)
         end
     end
 
-    score = score + linesCleared
+    if #linesToClear > 0 then
+        isClearing = true
+        clearTimer = 0.5
+        love.audio.play(clearSound)
+    end
 end
 
 
@@ -254,6 +252,14 @@ function showNotification(text, duration)
     notificationTimer = duration 
 end
 
+function contains(t, val)
+    for _, v in ipairs(t) do
+        if v == val then return true end
+    end
+    return false
+end
+
+
 function love.load()
     clickSound = love.audio.newSource("sounds/click.mp3", "static")
     clearSound = love.audio.newSource("sounds/explosion.mp3", "static")
@@ -296,6 +302,29 @@ function love.update(dt)
             notification = nil
         end
     end
+
+    if isClearing then
+        clearTimer = clearTimer - dt
+        if clearTimer <= 0 then
+            table.sort(linesToClear)
+
+            for i = #linesToClear, 1, -1 do
+            
+                local y = linesToClear[i]
+                table.remove(board, y)
+                local newRow = {}
+            
+                for x = 1, boardWidth do
+                    newRow[x] = 0
+                end
+                table.insert(board, 1, newRow)
+            end
+            score = score + #linesToClear
+            linesToClear = {}
+            isClearing = false
+        end
+    end
+    
 end
 
 function love.draw()
