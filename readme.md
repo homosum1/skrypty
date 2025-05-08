@@ -29,6 +29,7 @@ zewnątrz
 
 code: [folder](https://github.com/homosum1/skrypty/tree/main/task_02)
 
+### Crawler w Ruby
 
 Należy stworzyć crawler produktów na Amazonie lub Allegro w Ruby
 wykorzystują bibliotekę Nokogiri.
