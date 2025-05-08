@@ -9,22 +9,23 @@ function castleWallGeneration() {
 
     // first floor
     floorGeneration(28, 18, -1, COBBLESTONE, { x: 0, y: 0, z: 0 });
-    // ringGeneration(24, 10, 4, MANGROVE_WOOD)
-    // ringGeneration(28, 18, 4, MANGROVE_WOOD)
-    // floorGeneration(28, 18, 4, PLANKS_DARK_OAK, { x: 0, y: 0, z: 0 });
+    ringGeneration(24, 10, 4, MANGROVE_WOOD)
+    ringGeneration(28, 18, 4, MANGROVE_WOOD)
+    floorGeneration(28, 18, 4, PLANKS_DARK_OAK, { x: 0, y: 0, z: 0 });
 
-    // floorGeneration(22, 8, 4, AIR, { x: 1, y: 0, z: 0 });
+    floorGeneration(22, 8, 4, AIR, { x: 1, y: 0, z: 0 });
 
     // second floor
-    // PlayerDistance = 11
+    PlayerDistance = 11
 
-    // ringGeneration(24, 10, 5, MANGROVE_WOOD)
-    // ringGeneration(28, 18, 5, MANGROVE_WOOD)
+    ringGeneration(24, 10, 5, MANGROVE_WOOD)
+    ringGeneration(28, 18, 5, MANGROVE_WOOD)
 
-    // floorGeneration(28, 18, 4, PLANKS_DARK_OAK, { x: 0, y: 0, z: 0 });
-    // floorGeneration(22, 8, 4, AIR, { x: 1, y: 0, z: 0 });
+    floorGeneration(28, 18, 4, PLANKS_DARK_OAK, { x: 0, y: 0, z: 0 });
+    floorGeneration(22, 8, 4, AIR, { x: 1, y: 0, z: 0 });
 
 
+    generateGate(GLOWSTONE);
 
     // finishing
 
@@ -33,11 +34,33 @@ function castleWallGeneration() {
     ringGeneration(28, 18, 2, LOG_OAK)
 
     // towers
-    generateTower(4, -8, 10, 2, PLANKS_OAK);     
+    // generateTower(4, -8, 8, 2, PLANKS_OAK);     
     // generateTower(27, -8, 8, 2, PLANKS_OAK);
     // generateTower(4, 7, 8, 2, PLANKS_OAK);
     // generateTower(27, 7, 8, 2, PLANKS_OAK);
 
+}
+
+function generateGate(
+    material: any
+) {
+    const gateX = 2
+    const height = 5
+    const width = 4
+
+    const y_offset = 4
+
+    const startZ = - Math.floor(width / 2) - 1;
+    const endZ = Math.floor(width / 2);
+
+    for (let z = startZ; z <= endZ; z++) {
+        for (let y = 0; y < height; y++) {
+            blocks.place(AIR, pos(gateX, y - PlayerDistance - y_offset, z));
+        }
+    }
+
+    blocks.place(material, pos(gateX, height - PlayerDistance - y_offset, startZ - 1));
+    blocks.place(material, pos(gateX, height - PlayerDistance - y_offset, endZ + 1));
 }
 
 
