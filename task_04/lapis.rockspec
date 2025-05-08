@@ -1,13 +1,13 @@
-package = "task-04"
-version = "1.0"
+package = "lapis_app"
+version = "1.0-1"
 source = {
   url = "."
 }
+
 dependencies = {
-  "lapis",
-  "moonscript",
-  "cloud_storage"
+  "lapis"
 }
+
 build = {
   type = "builtin",
   modules = {}

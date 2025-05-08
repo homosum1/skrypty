@@ -7,7 +7,7 @@ do
     ["/"] = function(self)
       return {
         json = {
-          message = "Hello world"
+          message = "Hello world 2"
         }
       }
     end
