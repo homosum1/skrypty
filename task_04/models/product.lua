@@ -1,20 +1,10 @@
-local lapis = require("lapis")
-local App
-App = lapis.Application.App
-local cat_routes
-cat_routes = require("controllers.categories").cat_routes
+local Model
+Model = require("lapis.db.model").Model
+local Product
 do
   local _class_0
-  local _parent_0 = lapis.Application
-  local _base_0 = {
-    ["/"] = function(self)
-      return {
-        json = {
-          message = "Hello world 4"
-        }
-      }
-    end
-  }
+  local _parent_0 = Model
+  local _base_0 = { }
   _base_0.__index = _base_0
   setmetatable(_base_0, _parent_0.__base)
   _class_0 = setmetatable({
@@ -22,7 +12,7 @@ do
       return _class_0.__parent.__init(self, ...)
     end,
     __base = _base_0,
-    __name = "App",
+    __name = "Product",
     __parent = _parent_0
   }, {
     __index = function(cls, name)
@@ -46,7 +36,6 @@ do
   if _parent_0.__inherited then
     _parent_0.__inherited(_parent_0, _class_0)
   end
-  App = _class_0
+  Product = _class_0
+  return _class_0
 end
-App:extend(cat_routes)
-return App

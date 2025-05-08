@@ -1,0 +1,27 @@
+2025/05/08 16:54:20 [error] 187#187: *1 lua entry thread aborted: runtime error: Database type could not be determined from configuration (postgres, mysql, sqlite)
+stack traceback:
+coroutine 0:
+	[C]: in function 'require'
+	/usr/local/share/lua/5.1/lapis/init.lua:15: in function 'serve'
+	content_by_lua(nginx.conf.compiled:17):2: in main chunk, client: 192.168.65.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:8080"
+2025/05/08 16:54:20 [error] 187#187: *2 lua entry thread aborted: runtime error: /usr/local/openresty/lualib/resty/core/base.lua:80: loop or previous error loading module 'app'
+stack traceback:
+coroutine 0:
+	[C]: in function 'error'
+	/usr/local/openresty/lualib/resty/core/base.lua:80: in function 'require'
+	/usr/local/share/lua/5.1/lapis/init.lua:15: in function 'serve'
+	content_by_lua(nginx.conf.compiled:17):2: in main chunk, client: 192.168.65.1, server: localhost, request: "GET /apple-touch-icon-precomposed.png HTTP/1.1", host: "localhost:8080"
+2025/05/08 16:54:20 [error] 187#187: *3 lua entry thread aborted: runtime error: /usr/local/openresty/lualib/resty/core/base.lua:80: loop or previous error loading module 'app'
+stack traceback:
+coroutine 0:
+	[C]: in function 'error'
+	/usr/local/openresty/lualib/resty/core/base.lua:80: in function 'require'
+	/usr/local/share/lua/5.1/lapis/init.lua:15: in function 'serve'
+	content_by_lua(nginx.conf.compiled:17):2: in main chunk, client: 192.168.65.1, server: localhost, request: "GET /apple-touch-icon.png HTTP/1.1", host: "localhost:8080"
+2025/05/08 16:54:20 [error] 187#187: *4 lua entry thread aborted: runtime error: /usr/local/openresty/lualib/resty/core/base.lua:80: loop or previous error loading module 'app'
+stack traceback:
+coroutine 0:
+	[C]: in function 'error'
+	/usr/local/openresty/lualib/resty/core/base.lua:80: in function 'require'
+	/usr/local/share/lua/5.1/lapis/init.lua:15: in function 'serve'
+	content_by_lua(nginx.conf.compiled:17):2: in main chunk, client: 192.168.65.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080"
