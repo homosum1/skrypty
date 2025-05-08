@@ -33,10 +33,10 @@ function castleWallGeneration() {
     ringGeneration(28, 18, 2, LOG_OAK)
 
     // towers
-    generateTower(4, -8, 10, 2, BIRCH_WOOD);     
-    // generateTower(-2 + 27, -9, 8, 2, BIRCH_WOOD);
-    // generateTower(-2, 9, 8, 2, BIRCH_WOOD);
-    // generateTower(-2 + 27, 9, 8, 2, BIRCH_WOOD);
+    generateTower(4, -8, 10, 2, PLANKS_OAK);     
+    // generateTower(27, -8, 8, 2, PLANKS_OAK);
+    // generateTower(4, 7, 8, 2, PLANKS_OAK);
+    // generateTower(27, 7, 8, 2, PLANKS_OAK);
 
 }
 
@@ -48,14 +48,49 @@ function generateTower(
     radius: number,
     blockType: any
 ) {
+    // core
     for (let x = -radius; x <= radius; x++) {
         for (let z = -radius; z <= radius; z++) {
-            for (let y = 0; y < height; y++) {
-                blocks.place(blockType, pos(baseX + x, y - PlayerDistance, baseZ + z));
+            const isEdge =
+                x === -radius || x === radius ||
+                z === -radius || z === radius;
+
+            if (isEdge) {
+                for (let y = 0; y < height; y++) {
+                    blocks.place(blockType, pos(baseX + x, y - PlayerDistance, baseZ + z));
+                }
             }
         }
     }
+
+    // windows
+    const windowY = Math.floor(height / 2) - 1;
+
+    blocks.place(AIR, pos(baseX, windowY - PlayerDistance, baseZ - radius));
+    blocks.place(OAK_FENCE, pos(baseX, windowY + 1 - PlayerDistance, baseZ - radius));
+    blocks.place(AIR, pos(baseX, windowY + 2 - PlayerDistance, baseZ - radius));
+
+    blocks.place(AIR, pos(baseX, windowY - PlayerDistance, baseZ + radius));
+    blocks.place(OAK_FENCE, pos(baseX, windowY + 1 - PlayerDistance, baseZ + radius));
+    blocks.place(AIR, pos(baseX, windowY + 2 - PlayerDistance, baseZ + radius));
+
+    blocks.place(AIR, pos(baseX - radius, windowY - PlayerDistance, baseZ));
+    blocks.place(OAK_FENCE, pos(baseX - radius, windowY + 1 - PlayerDistance, baseZ));
+    blocks.place(AIR, pos(baseX - radius, windowY + 2 - PlayerDistance, baseZ));
+
+    blocks.place(AIR, pos(baseX + radius, windowY - PlayerDistance, baseZ));
+    blocks.place(OAK_FENCE, pos(baseX + radius, windowY + 1 - PlayerDistance, baseZ));
+    blocks.place(AIR, pos(baseX + radius, windowY + 2 - PlayerDistance, baseZ));
+
+    // finishing
+    const topY = height - PlayerDistance;
+
+    blocks.place(blockType, pos(baseX - radius, topY, baseZ - radius));
+    blocks.place(blockType, pos(baseX + radius, topY, baseZ - radius));
+    blocks.place(blockType, pos(baseX - radius, topY, baseZ + radius));
+    blocks.place(blockType, pos(baseX + radius, topY, baseZ + radius));
 }
+
 
 
 function floorGeneration(
