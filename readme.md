@@ -67,15 +67,25 @@ rodzaje klocków
 
 code: [folder](https://github.com/homosum1/skrypty/tree/main/task_05)
 
-### Mario w Ruby2d
+### Chatbot in Python
 
-3.0 Należy stworzyć jeden poziom z przeszkodami oraz dziurami w które
-można wpaść i zginąć
+Czatbot powinien być zintegrowany z minimum jednym czatem: slack,
+discord, messenger. Należy użyć gpt4all (https://gpt4all.io/) lub
+ollama (https://ollama.com/).
 
-3.5 Należy dodać opcję zbierania punktów
+3.0 Nalezy zaimplementować minimum 3 ścieżki (prompt chains) turnieju
+e-sportowego
 
-4.0 Należy dodać przeciwników, których można zabić oraz 3 życia
+3.5 Bot wyświetla listę dostępnych rozgrywek
 
-4.5 Ładowanie poziomów z pliku
+4.0 Bot dodaje zawodnika do rozgrywki
 
-5.0 Generator poziomów
+4.5 Bot potwierdza dodanie zawodnika wraz z numerem oraz szczegółami
+turnieju
+
+5.0 Bot wyświetla wszystkie drużyny, stan rozgrywek oraz wszystkich
+zawodników w rozgrywkach
+
+
+code: [folder](https://github.com/homosum1/skrypty/tree/main/task_06)
+
