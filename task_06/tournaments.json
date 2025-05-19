@@ -1,33 +1,40 @@
 [
-    {
-      "name": "LoL Championship",
-      "start_date": "2025-06-10",
-      "prize": 10000,
-      "players": [
-        {
-          "name": "Nick1",
-          "id": 1
-        },
-        {
-          "name": "Nick2",
-          "id": 2
-        }
-      ]
-    },
-    {
-      "name": "CS:GO Masters",
-      "start_date": "2025-06-20",
-      "prize": 7500,
-      "players": [
-        {
-          "name": "Nick3",
-          "id": 1
-        },
-        {
-          "name": "Nick4",
-          "id": 2
-        }
-      ]
-    }
-  ]
-  
+  {
+    "name": "LoL Championship",
+    "start_date": "2025-06-10",
+    "prize": 10000,
+    "players": [
+      {
+        "name": "Nick1",
+        "id": 1
+      },
+      {
+        "name": "Nick2",
+        "id": 2
+      },
+      {
+        "name": "MrChow",
+        "id": 3
+      },
+      {
+        "name": "MrMiau",
+        "id": 4
+      }
+    ]
+  },
+  {
+    "name": "CS:GO Masters",
+    "start_date": "2025-06-20",
+    "prize": 7500,
+    "players": [
+      {
+        "name": "Nick3",
+        "id": 1
+      },
+      {
+        "name": "Nick4",
+        "id": 2
+      }
+    ]
+  }
+]

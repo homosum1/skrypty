@@ -51,12 +51,12 @@ def parse_user_prompt(prompt: str) -> dict:
     predefined_query = (
         "Jesteś asystentem e-sportowym. Twoim zadaniem jest analizowanie poleceń zadawanych przez uzytkownika"
         "i zamiana ich na komendy w formacie JSON. Kazde polecenie zadawane przez uzytkownika powinno pasować do jednej z akcji. Obsługiwane akcje:"
-        "- list_tournaments (jeśli uzytkownik poprosi o wylistowanie turniejow - bez dokladnych szczegolow)"
-        "- add_player (zawiera parametry: tournament, player) daj to jesli uzytkownik poprosi o dodanie gracza do turnieju i poda nazwe turnieju oraz nazwe gracza"
-        "- show_tournament (zawiera parametry: tournament) daj to jesli uzytkownik poprosi o informacje o kontretnym turnieju i poda jego nazwe"
-        "- show_instructions"
-        "- print_all (jeśli uzytkownik poprosi o wylistowanie turniejow - z dokladnymi szczegolami"
-        "Zwracaj tylko czysty JSON bez komentarzy ani wyjaśnień. Parametry zawsze mają być wewnątrz pola 'data'. Jeśli polecenie od uzytkownika nie pasuje do zadnej akcji to dopasuj je domyslnie do -show_instructions"
+        "- akcja: list_tournaments jeśli uzytkownik poprosi o wylistowanie turniejow - bez dokladnych szczegolow"
+        "- akcja: add_player (zawiera parametry: tournament, player) daj to jesli uzytkownik poprosi o dodanie gracza do turnieju i poda nazwe turnieju oraz nazwe gracza"
+        "- akcja: show_tournament (zawiera parametry: tournament) daj to jesli uzytkownik poprosi o informacje o kontretnym turnieju i poda jego nazwe"
+        "- akcja: show_instructions (nie zawiera parametrów)"
+        "- akcja: print_all (nie zawiera parametrów) jeśli uzytkownik poprosi o wylistowanie turniejow - z dokladnymi szczegolami"
+        "Zwracaj tylko czysty JSON bez komentarzy ani wyjaśnień. Parametry zawsze mają być wewnątrz pola 'data'. Nazwa akcji powinna odpowiadać polu: 'action' Jeśli polecenie od uzytkownika nie pasuje do zadnej akcji to dopasuj je domyslnie do akcji: show_instructions"
         "Polecenie uzytkownika: "
     )
 
@@ -64,6 +64,7 @@ def parse_user_prompt(prompt: str) -> dict:
     result = olama_query(final_query)
 
     try:
+        print(result)
         return json.loads(result.strip())
     except json.JSONDecodeError:
         return { "action": "print_error" }
@@ -75,6 +76,7 @@ def printAvaiableOptions():
         "- add_player (zawiera parametry: tournament, player)\n"
         "- show_tournament (zawiera parametry: tournament)\n"
         "- show_instructions\n"
+        "- print_all\n"
     )
 
 class Overlord:
@@ -123,6 +125,9 @@ def promptToAction(result: dict, overlord: Overlord) -> str:
     output = ""
     action = result.get("action")
     data = result.get("data", {})
+
+    print(f"raw dict: {result}")
+    print(f"captured data: {data} \ncaptured action: {action}\n\n")
 
     if action == "list_tournaments":
         tournaments = overlord.list_tournaments()
@@ -188,15 +193,3 @@ def promptToAction(result: dict, overlord: Overlord) -> str:
 
     else:
         return printAvaiableOptions()
-
-
-if __name__ == "__main__":
-    overlord = Overlord()
-
-    prompt = "Pokaz mi informacje o turnieju z CS:GO Masters"
-    parsed = parse_user_prompt(prompt)
-
-    print("Wynik parsowania:\n", parsed)
-
-    response = promptToAction(parsed, overlord)
-    print("💬 Odpowiedź bota:\n", response)
