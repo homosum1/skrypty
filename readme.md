@@ -73,17 +73,17 @@ Czatbot powinien być zintegrowany z minimum jednym czatem: slack,
 discord, messenger. Należy użyć gpt4all (https://gpt4all.io/) lub
 ollama (https://ollama.com/).
 
-3.0 Nalezy zaimplementować minimum 3 ścieżki (prompt chains) turnieju
+✅ 3.0 Nalezy zaimplementować minimum 3 ścieżki (prompt chains) turnieju
 e-sportowego
 
-3.5 Bot wyświetla listę dostępnych rozgrywek
+✅ 3.5 Bot wyświetla listę dostępnych rozgrywek
 
-4.0 Bot dodaje zawodnika do rozgrywki
+✅ 4.0 Bot dodaje zawodnika do rozgrywki
 
-4.5 Bot potwierdza dodanie zawodnika wraz z numerem oraz szczegółami
+✅ 4.5 Bot potwierdza dodanie zawodnika wraz z numerem oraz szczegółami
 turnieju
 
-5.0 Bot wyświetla wszystkie drużyny, stan rozgrywek oraz wszystkich
+✅ 5.0 Bot wyświetla wszystkie drużyny, stan rozgrywek oraz wszystkich
 zawodników w rozgrywkach
 
 
